@@ -137,3 +137,8 @@ type Search struct {
 	TotalPages int
 	Results    Results
 }
+
+func (article *Article) FormatPublishDate() string {
+	year, month, day := article.PublishedAt.Date()
+	return fmt.Sprintf("%v %d, %d", month, day, year)
+}
