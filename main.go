@@ -155,3 +155,15 @@ func (search *Search) IsLastPage() bool {
 func (search *Search) IsNotLastPage() bool {
 	return !search.IsLastPage()
 }
+
+func (search *Search) CurrentPage() int {
+	if search.NextPage == 1 {
+		return search.NextPage
+	}
+
+	return search.NextPage - 1
+}
+
+func (search *Search) PreviousPage() int {
+	return search.CurrentPage() - 1
+}

@@ -43,6 +43,9 @@
       {{ end }}
     </ul>
     <div class="pagination">
+      {{ if (gt .NextPage 2) }}
+        <a href="/search?q={{ .SearchKey }}&page={{ .PreviousPage }}" class="button previous-page">Previous</a>
+      {{ end }}
       {{ if (ne .IsLastPage true) }}
         <a href="/search?q={{ .SearchKey }}&page={{ .NextPage }}" class="button next-page">Next</a>
       {{ end }}
