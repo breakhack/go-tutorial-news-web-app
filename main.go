@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/joho/godotenv"
 	"html/template"
@@ -12,8 +13,16 @@ import (
 )
 
 var tpl = template.Must(template.ParseFiles("index.html"))
+var apiKey *string
 
 func init() {
+	apiKey = flag.String("apikey", "", "newsapi.org access key")
+	flag.Parse()
+
+	if *apiKey == "" {
+		log.Fatal("apiKey must be set")
+	}
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("no .env file found")
