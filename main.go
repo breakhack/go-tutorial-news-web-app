@@ -1,11 +1,14 @@
 package main
 
 import (
+	"html/template"
 	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
 )
+
+var tpl = template.Must(template.ParseFiles("index.html"))
 
 func init() {
 	err := godotenv.Load()
@@ -15,7 +18,7 @@ func init() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("<h1>Hello World!!!</h1>"))
+	tpl.Execute(w, nil)
 }
 
 func getPort() string {
