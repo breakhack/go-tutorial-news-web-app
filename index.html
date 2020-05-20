@@ -42,6 +42,11 @@
         </li>
       {{ end }}
     </ul>
+    <div class="pagination">
+      {{ if (ne .IsLastPage true) }}
+        <a href="/search?q={{ .SearchKey }}&page={{ .NextPage }}" class="button next-page">Next</a>
+      {{ end }}
+    </div>
   </section>
 </main>
 </body>
