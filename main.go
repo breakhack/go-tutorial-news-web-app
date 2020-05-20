@@ -1,8 +1,8 @@
 package main
 
 import (
-	"html/template"
 	"github.com/joho/godotenv"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -31,6 +31,10 @@ func getPort() string {
 
 func main() {
 	mux := http.NewServeMux()
+
+	fs := http.FileServer(http.Dir("assets"))
+	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
+
 	mux.HandleFunc("/", indexHandler)
 	http.ListenAndServe(":"+getPort(), mux)
 }
